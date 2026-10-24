@@ -1,10 +1,10 @@
 # DS Bot 融入 Agnx 分析（子应用 `ds-bot`）
 
 > 上游仓库：https://github.com/Fei2411/DeepSeek-Bot（DS Bot）
-> 上游本机副本：`/Users/apple/Downloads/DeepSeek-Bot-main`
-> 落地目录：`~/.agnx-dev/apps/ds-bot/`
+> 上游本机副本：`~/Downloads/DeepSeek-Bot-main`
+> 落地目录：`$AGNX_HOME/apps/ds-bot/`
 > 状态：**已落地并通过桌面端验收**（`launchMode=packaged`、`installState=installed`）
-> 验收截图：`~/.agnx-dev/apps/ds-bot/acceptance-desktop.png`
+> 验收截图：`$AGNX_HOME/apps/ds-bot/acceptance-desktop.png`
 
 ---
 
@@ -58,7 +58,7 @@ close the other one and reload.
 
 第二实例能起来、能看，但**改不了团队**。共用 home 会得到"两个窗口抢一个只读团队"的坏体验。
 
-**依据二：会把用户主 profile 弄脏。** 用户的 DSH 跑在 3080，`DSH_HOME=~/.agnx-dev/apps/data/deepseek-harness/dsh-home`，是手工维护的工作流。往里装 `ds-bot` 插件（`dsh.profile.bundles`）和塞 Bot 团队状态，属于对用户主环境的侵入式修改。
+**依据二：会把用户主 profile 弄脏。** 用户的 DSH 跑在 3080，`DSH_HOME=$AGNX_HOME/apps/data/deepseek-harness/dsh-home`，是手工维护的工作流。往里装 `ds-bot` 插件（`dsh.profile.bundles`）和塞 Bot 团队状态，属于对用户主环境的侵入式修改。
 
 **依据三：生命周期要独立。** 子应用要能单独启停、单独清数据、单独升级。共用实例时"关掉 DS Bot"就等于"关掉用户的 DSH"。
 
@@ -146,7 +146,7 @@ ds-bot 发消息 → llm-deepseek 路由 "deepseek-official"
 ## ⑤ 最小落地切片（已完成）
 
 ```
-~/.agnx-dev/apps/ds-bot/
+$AGNX_HOME/apps/ds-bot/
 ├── EMBED.md                      ← 本文
 ├── acceptance-desktop.png        ← 桌面端验收截图
 └── .agnx/
@@ -176,7 +176,7 @@ ds-bot 发消息 → llm-deepseek 路由 "deepseek-official"
 **运行期数据**（全部在 Agnx 数据根下，不污染用户目录）
 
 ```
-~/.agnx-dev/apps/data/ds-bot/
+$AGNX_HOME/apps/data/ds-bot/
 ├── dsh-home/          ← 独立 DSH_HOME
 │   └── profiles/web/  ← ds-bot plugin 以 link: 装在此
 ├── work/              ← dsh web 的 cwd
