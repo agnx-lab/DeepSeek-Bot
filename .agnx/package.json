@@ -1,0 +1,26 @@
+{
+  "name": "@agnx-sub/ds-bot",
+  "private": true,
+  "version": "1.0.0",
+  "type": "commonjs",
+  "scripts": {
+    "build": "node ./scripts/build.mjs"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "esbuild": "^0.25.0"
+  },
+  "peerDependencies": {
+    "@agnx-lab/app-sdk": "*",
+    "react": "*",
+    "react-native": "*",
+    "react-native-unistyles": "*"
+  },
+  "description": "Agnx 外置子应用胶水：DS Bot（dsh 插件）在独立 DSH_HOME 的 dsh web 实例 + iframe",
+  "main": "dist/index.js",
+  "peerDependenciesMeta": {
+    "@agnx-lab/app-sdk": {
+      "optional": true
+    }
+  }
+}

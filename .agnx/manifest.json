@@ -1,0 +1,40 @@
+{
+  "id": "ds-bot",
+  "name": "DS Bot",
+  "version": "1.0.0",
+  "description": "把 DS Bot（DeepSeek Harness 上的长期 Bot 团队：主 Bot、Bot 间消息、群聊）整页嵌进 Agnx Tab。独立 DSH_HOME + 独立 dsh web 实例（13080），不碰用户的 3080 / ~/.dsh。",
+  "engines": {
+    "agnx": ">=1.0.0"
+  },
+  "main": "./dist/index.js",
+  "icon": "./.agnx/assets/ds-bot-icon.png",
+  "sidecar": {
+    "supervised": true,
+    "ensureTool": ".agnx/tools/ensure-ds-bot.mjs",
+    "stateFile": "ds-bot.json",
+    "defaultPort": 13080
+  },
+  "guest": {
+    "kind": "web",
+    "auth": "url-token-then-cookie",
+    "capabilities": [
+      "cookies",
+      "websocket"
+    ],
+    "preferStrategy": "auto"
+  },
+  "contributes": {
+    "commands": [
+      {
+        "id": "ds-bot.open",
+        "title": "DS Bot"
+      }
+    ],
+    "panels": [
+      {
+        "id": "ds-bot.main",
+        "title": "DS Bot"
+      }
+    ]
+  }
+}

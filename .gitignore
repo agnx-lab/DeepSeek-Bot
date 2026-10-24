@@ -27,3 +27,7 @@ node_modules/
 
 # Bytecode from the record-browser-gif encoder's local media tests.
 __pycache__/
+
+# Agnx 子应用胶水产物必须入库（上游裸 dist 规则会误伤 .agnx/dist）
+!.agnx/dist/
+!.agnx/dist/**
